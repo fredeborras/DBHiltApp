@@ -1,8 +1,8 @@
-package com.dbhiltapp.app
+package com.dbhiltapp.app.feature.main.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dbhiltapp.app.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
+import com.dbhiltapp.app.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.container, MainFragment.newInstance())
