@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DBHiltApp</string>
+
+    <string name="generic_empty_label">Nothing found</string>
 </resources>
