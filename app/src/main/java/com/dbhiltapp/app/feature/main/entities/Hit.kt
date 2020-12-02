@@ -1,7 +1,14 @@
 package com.dbhiltapp.app.feature.main.entities
 
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.squareup.moshi.Json
 import java.io.Serializable
+
+//Adding BindingAdapter method to top level to avoid static definition
+@BindingAdapter("imageURL")
+fun loadImage(view: ImageView, url: String) = Glide.with(view).load(url).into(view)
 
 class Hit : Serializable {
     var comments: Long? = null
