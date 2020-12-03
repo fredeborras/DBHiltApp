@@ -5,20 +5,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dbhiltapp.app.R
 import com.dbhiltapp.app.databinding.MainFragmentBinding
+import com.dbhiltapp.app.feature.main.entities.Hit
 import com.dbhiltapp.app.feature.main.entities.PixabayImagesOut
 import com.dbhiltapp.app.feature.main.view.adapter.MainListAdapter
+import com.dbhiltapp.app.feature.main.view.adapter.OnItemClick
 import com.dbhiltapp.app.feature.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), OnItemClick {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -66,7 +69,7 @@ class MainFragment : Fragment() {
         if (response.hits != null && response.hits!!.isNotEmpty()) {
             this.binding.listVisible = true
 
-            val adapter = MainListAdapter(response.hits!!)
+            val adapter = MainListAdapter(response.hits!!, this)
             recyclerView.layoutManager = GridLayoutManager(context, 2)
             recyclerView.adapter = adapter
         } else {
@@ -79,6 +82,10 @@ class MainFragment : Fragment() {
      */
     private fun showEmptyState() {
         this.binding.listVisible = false
+    }
+
+    override fun itemClick(data: Hit) {
+        Toast.makeText(context, data.user, Toast.LENGTH_SHORT).show()
     }
 
 }
